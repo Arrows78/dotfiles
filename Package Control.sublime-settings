@@ -1,20 +1,41 @@
 {
-  "installed_packages":
-  [
-    "A File Icon",
-    "AdvancedNewFile",
-    "All Autocomplete",
-    "Babel",
-    "Emmet",
-    "ERB Snippets",
-    "Git",
-    "Latest Migration",
-    "MagicPython",
-    "Package Control",
-    "SCSS",
-    "SublimeLinter",
-    "SublimeLinter-rubocop",
-    "BracketHighlighter",
-    "Color Highlight"
-  ]
+    "bootstrapped": true,
+    "in_process_packages":
+    [
+    ],
+    "installed_packages":
+    [
+        "A File Icon",
+        "Alignment",
+        "All Autocomplete",
+        "AutoFileName",
+        "BracketHighlighter",
+        "Color Highlighter",
+        "ColorPicker",
+        "ConvertToUTF8",
+        "DocBlockr",
+        "Emmet",
+        "Emmet Css Snippets",
+        "FileDiffs",
+        "Git",
+        "GitGutter",
+        "GitTimeMetric",
+        "HTML-CSS-JS Prettify",
+        "HTML5",
+        "Ionic 2",
+        "Ionic Framework Extended Autocomplete",
+        "Ionic Framework Snippets",
+        "Ionic Snippets",
+        "Javascript Beautify",
+        "LoremIpsum",
+        "Markdown HTML Preview",
+        "MarkdownPreview",
+        "Package Control",
+        "Sass",
+        "SideBarEnhancements",
+        "SublimeCodeIntel",
+        "SublimeLinter",
+        "Sync Settings",
+        "TypeScript"
+    ]
 }
