@@ -45,3 +45,7 @@
 
 [branch "master"]
   mergeoptions = --no-edit
+
+[user]
+	email = "thomas.jost78@gmail.com"
+	name = "Thomas Jost"
