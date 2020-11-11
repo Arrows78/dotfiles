@@ -1,6 +1,11 @@
 syntax on
+
 set backspace=indent,eol,start
-set tabstop=2 shiftwidth=2 expandtab
+set tabstop=4 shiftwidth=4 expandtab
+set number
+set wrap
+set ruler
+
 if has("multi_byte")
   set encoding=utf-8
   setglobal fileencoding=utf-8
