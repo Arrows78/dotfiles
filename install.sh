@@ -1,14 +1,18 @@
+#!/bin/zsh
+
+# Define a function which rename a `target` file to `target.backup`
 backup() {
   target=$1
   if [ -e "$target" ]; then           # Does the config file already exist?
-    if [ ! -L "$target" ]; then       # as a pure file?
+    if [ ! -L "$target" ]; then       # as a pure file? (i.e. not a symlink)
       mv "$target" "$target.backup"   # Then backup it
       echo "-----> Moved your old $target config file to $target.backup"
     fi
   fi
 }
 
-#!/bin/zsh
+# For all files `$name` in the present folder except `*.sh`, `README.md` and `sublime-settings`,
+# backup the target file located at `~/.$name` and symlink `$name` to `~/.$name`
 for name in *; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
