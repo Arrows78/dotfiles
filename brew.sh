@@ -54,15 +54,15 @@ brew install --cask 'robofont'
 #############################################################
 # App Store
 #############################################################
-mas 'Bitwarden', id: 1352778147
-mas 'iMovie', id: 408981434
-mas 'Keynote', id: 409183694
-mas 'MenubarX', id: 1575588022
-mas 'Messenger', id: 1480068668
-mas 'Microsoft 365', id: id1450038993
-mas 'Numbers', id: 409203825
-mas 'Pages', id: 409201541
-mas 'Slack for Desktop', id: 803453959
-mas 'Usage: System Activity Monitor', id: 1561788435
-mas 'WhatsApp Desktop', id: 1147396723
-mas 'Xcode', id: 497799835
+brew install mas 'Bitwarden', id: 1352778147
+brew install mas 'iMovie', id: 408981434
+brew install mas 'Keynote', id: 409183694
+brew install mas 'MenubarX', id: 1575588022
+brew install mas 'Messenger', id: 1480068668
+brew install mas 'Microsoft 365', id: id1450038993
+brew install mas 'Numbers', id: 409203825
+brew install mas 'Pages', id: 409201541
+brew install mas 'Slack for Desktop', id: 803453959
+brew install mas 'Usage: System Activity Monitor', id: 1561788435
+brew install mas 'WhatsApp Desktop', id: 1147396723
+brew install mas 'Xcode', id: 497799835
