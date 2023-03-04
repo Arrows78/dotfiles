@@ -60,9 +60,7 @@ mas 'iMovie', id: 408981434
 mas 'Keynote', id: 409183694
 mas 'MenubarX', id: 1575588022
 mas 'Messenger', id: 1480068668
-mas 'Microsoft Excel', id: 462058435
-mas 'Microsoft PowerPoint', id: 462062816
-mas 'Microsoft Word', id: 462054704
+mas 'Microsoft 365', id: id1450038993
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
 mas 'Slack for Desktop', id: 803453959
