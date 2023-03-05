@@ -49,7 +49,7 @@ brew install --cask 'zoom'
 # Fonts
 #############################################################
 brew install --cask 'font-open-sans'
-brew install --cask 'robofont'
+brew install --cask 'font-roboto'
 
 #############################################################
 # App Store
