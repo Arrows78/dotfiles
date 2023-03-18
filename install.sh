@@ -11,6 +11,15 @@ backup() {
   fi
 }
 
+symlink() {
+  file=$1
+  link=$2
+  if [ ! -e "$link" ]; then
+    echo "-----> Symlinking your new $link"
+    ln -s $file $link
+  fi
+}
+
 # For all files `$name` in the present folder except `*.sh`, `README.md` and `sublime-settings`,
 # backup the target file located at `~/.$name` and symlink `$name` to `~/.$name`
 for name in *; do
@@ -18,11 +27,7 @@ for name in *; do
     target="$HOME/.$name"
     if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [[ ! "$name" =~ '\.sublime-settings$' ]]; then
       backup $target
-
-      if [ ! -e "$target" ]; then
-        echo "-----> Symlinking your new $target"
-        ln -s "$PWD/$name" "$target"
-      fi
+      symlink $PWD/$name $target
     fi
   fi
 done
