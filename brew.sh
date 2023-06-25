@@ -18,7 +18,6 @@ brew install 'wget'
 #############################################################
 # Desktop Apps
 #############################################################
-brew install --cask 'alfred'
 brew install --cask 'alt-tab'
 brew install --cask 'bitwarden'
 brew install --cask 'cron'
@@ -34,6 +33,7 @@ brew install --cask 'messenger'
 brew install --cask 'notion'
 brew install --cask 'onyx'
 brew install --cask 'postman'
+brew install --cask 'raycast'
 brew install --cask 'rectangle'
 brew install --cask 'shottr'
 brew install --cask 'slack'
