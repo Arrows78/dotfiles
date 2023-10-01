@@ -1,10 +1,11 @@
-# Make sure we’re using the latest Homebrew.
+# Make sure we’re using the latest Homebrew
 brew update
 
-# Upgrade any already-installed formulae.
-brew upgrade
+# List which installed packages are outdated with
+brew outdated
 
-cask_args appdir: '/Applications'
+# Upgrade any already-installed formulae
+brew upgrade
 
 #############################################################
 # Apps
@@ -19,6 +20,7 @@ brew install 'wget'
 # Desktop Apps
 #############################################################
 brew install --cask 'alt-tab'
+brew install --cask 'appcleaner'
 brew install --cask 'bitwarden'
 brew install --cask 'cron'
 brew install --cask 'discord'
