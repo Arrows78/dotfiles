@@ -11,6 +11,7 @@ backup() {
   fi
 }
 
+# Define a function to create a symlink
 symlink() {
   file=$1
   link=$2
@@ -25,16 +26,20 @@ symlink() {
 for name in *; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
-    if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [[ ! "$name" =~ '\.sublime-settings$' ]]; then
+    if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [[ ! "$name" =~ '\.sublime-settings$' ]] && [[ ! "$name" =~ 'sshconfig' ]]; then
       backup $target
       symlink $PWD/$name $target
     fi
   fi
 done
 
-REGULAR="\\033[0;39m"
-YELLOW="\\033[1;33m"
-GREEN="\\033[1;32m"
+# Symlink SSH config file to the present ssh config file for macOS and add SSH passphrase to the keychain
+if [[ `uname` =~ "Darwin" ]]; then
+  target="$HOME/.ssh/config"
+  backup $target
+  symlink $PWD/sshconfig $target
+  ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+fi
 
 # zsh plugins
 CURRENT_DIR=`pwd`
@@ -42,12 +47,13 @@ ZSH_PLUGINS_DIR="$HOME/.oh-my-zsh/custom/plugins"
 mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR"
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
-  git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+  git clone git@github.com/zsh-users/zsh-syntax-highlighting.git
+  git clone git@github.com/zsh-users/zsh-autosuggestions.git
 fi
 cd "$CURRENT_DIR"
 
 setopt nocasematch
-if [[ ! `uname` =~ "darwin" ]]; then
+if [[ ! `uname` =~ "Darwin" ]]; then
   git config --global core.editor "subl -n -w $@ >/dev/null 2>&1"
   echo 'export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"' >> zshrc
 else
@@ -57,7 +63,7 @@ else
 fi
 
 # Sublime Text
-if [[ ! `uname` =~ "darwin" ]]; then
+if [[ ! `uname` =~ "Darwin" ]]; then
   SUBL_PATH=~/.config/sublime-text-3
 else
   SUBL_PATH=~/Library/Application\ Support/Sublime\ Text\ 3
@@ -69,6 +75,7 @@ symlink $PWD/Preferences.sublime-settings $SUBL_PATH/Packages/User/Preferences.s
 symlink $PWD/Package\ Control.sublime-settings $SUBL_PATH/Packages/User/Package\ Control.sublime-settings
 symlink $PWD/SublimeLinter.sublime-settings $SUBL_PATH/Packages/User/SublimeLinter.sublime-settings
 
-zsh ~/.zshrc
+# Refresh the current terminal with the newly installed configuration
+exec zsh
 
-echo "👌  Carry on with git setup!"
+echo "👌 Carry on with git setup!"
