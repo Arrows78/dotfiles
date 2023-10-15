@@ -14,8 +14,10 @@
 	editor = '/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -n -w
 
 [alias]
+  aliases = config --get-regexp alias
   co = checkout
-  st = status -sb
+  st = status
+  stb = status -sb
   br = branch
   ci = commit
   fo = fetch origin
