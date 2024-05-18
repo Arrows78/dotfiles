@@ -46,6 +46,7 @@ brew install --cask 'sublime-merge'
 brew install --cask 'sublime-text'
 brew install --cask 'synology-drive'
 brew install --cask 'vlc'
+brew install --cask 'wacom-tablet'
 brew install --cask 'whatsapp'
 brew install --cask 'zoom'
 
