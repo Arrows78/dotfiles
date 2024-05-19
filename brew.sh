@@ -10,11 +10,13 @@ brew upgrade
 #############################################################
 # Apps
 #############################################################
+brew install 'gh'
 brew install 'git'
 brew install 'imagemagick'
 brew install 'mas'
 brew install 'tree'
 brew install 'wget'
+brew install 'zsh'
 
 #############################################################
 # Desktop Apps
@@ -22,6 +24,7 @@ brew install 'wget'
 brew install --cask 'alt-tab'
 brew install --cask 'appcleaner'
 brew install --cask 'bitwarden'
+brew install --cask 'darktable'
 brew install --cask 'dbeaver-community'
 brew install --cask 'discord'
 brew install --cask 'figma'
@@ -32,6 +35,7 @@ brew install --cask 'google-drive'
 brew install --cask 'hiddenbar'
 brew install --cask 'iterm2'
 brew install --cask 'messenger'
+brew install --cask 'molotov'
 brew install --cask 'notion'
 brew install --cask 'notion-calendar'
 brew install --cask 'onyx'
@@ -71,7 +75,6 @@ brew install mas 'Slack for Desktop', id: 803453959
 brew install mas 'Usage: System Activity Monitor', id: 1561788435
 brew install mas 'WhatsApp Desktop', id: 1147396723
 brew install mas 'Xcode', id: 497799835
-
 
 # Remove outdated versions from the cellar.
 brew cleanup
