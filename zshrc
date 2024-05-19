@@ -5,6 +5,8 @@ ZSH_THEME="robbyrussell"
 
 # Useful oh-my-zsh plugins
 plugins=(
+    colored-man-pages
+    colorize
     common-aliases
     git
     gitfast
