@@ -34,6 +34,7 @@ brew install --cask 'google-chrome'
 brew install --cask 'google-drive'
 brew install --cask 'hiddenbar'
 brew install --cask 'iterm2'
+brew install --cask 'latest'
 brew install --cask 'messenger'
 brew install --cask 'molotov'
 brew install --cask 'notion'
@@ -49,10 +50,14 @@ brew install --cask 'stats'
 brew install --cask 'sublime-merge'
 brew install --cask 'sublime-text'
 brew install --cask 'synology-drive'
+brew install --cask 'upscayl'
 brew install --cask 'vlc'
 brew install --cask 'wacom-tablet'
 brew install --cask 'whatsapp'
 brew install --cask 'zoom'
+
+# Upgrade any installed desktop app
+brew upgrade --cask
 
 #############################################################
 # Fonts
@@ -64,7 +69,6 @@ brew install --cask 'font-roboto'
 # App Store
 #############################################################
 brew install mas 'Bitwarden', id: 1352778147
-brew install mas 'iMovie', id: 408981434
 brew install mas 'Keynote', id: 409183694
 brew install mas 'MenubarX', id: 1575588022
 brew install mas 'Messenger', id: 1480068668
@@ -75,6 +79,7 @@ brew install mas 'Slack for Desktop', id: 803453959
 brew install mas 'Usage: System Activity Monitor', id: 1561788435
 brew install mas 'WhatsApp Desktop', id: 1147396723
 brew install mas 'Xcode', id: 497799835
+brew install mas 'iMovie', id: 408981434
 
-# Remove outdated versions from the cellar.
+# Remove outdated versions from the cellar
 brew cleanup
