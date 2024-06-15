@@ -4,3 +4,11 @@ alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/m
 
 alias l='ls -lhF'
 alias la='ls -lahF'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+
+alias update="sudo softwareupdate -i -a; brew update; brew outdated; brew upgrade; brew cleanup;"
