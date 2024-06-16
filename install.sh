@@ -21,11 +21,14 @@ symlink() {
   fi
 }
 
-# For all files `$name` in the present folder except `*.sh`, `README.md` and `sublime-settings`,
+HOME_DIR="$HOME"
+CURRENT_DIR="$PWD"
+
+# For all files `$name` in the present folder except `*.sh`, `README.md`, `sublime-settings` and `sshconfig`,
 # backup the target file located at `~/.$name` and symlink `$name` to `~/.$name`
 for name in *; do
   if [ ! -d "$name" ]; then
-    target="$HOME/.$name"
+    target="$HOME_DIR/.$name"
     if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [[ ! "$name" =~ '\.sublime-settings$' ]] && [[ ! "$name" =~ 'sshconfig' ]]; then
       backup $target
       symlink $PWD/$name $target
@@ -35,15 +38,14 @@ done
 
 # Symlink SSH config file to the present ssh config file for macOS and add SSH passphrase to the keychain
 if [[ `uname` =~ "Darwin" ]]; then
-  target="$HOME/.ssh/config"
+  target="$HOME_DIR/.ssh/config"
   backup $target
-  symlink $PWD/sshconfig $target
+  symlink $CURRENT_DIR/sshconfig $target
   ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 fi
 
 # zsh plugins
-CURRENT_DIR=`pwd`
-ZSH_PLUGINS_DIR="$HOME/.oh-my-zsh/custom/plugins"
+ZSH_PLUGINS_DIR="$HOME_DIR/.oh-my-zsh/custom/plugins"
 mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR"
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
@@ -71,9 +73,15 @@ fi
 mkdir -p $SUBL_PATH/Packages/User $SUBL_PATH/Installed\ Packages
 backup "$SUBL_PATH/Packages/User/Preferences.sublime-settings"
 curl -k https://sublime.wbond.net/Package%20Control.sublime-package > $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package
-symlink $PWD/Preferences.sublime-settings $SUBL_PATH/Packages/User/Preferences.sublime-settings
-symlink $PWD/Package\ Control.sublime-settings $SUBL_PATH/Packages/User/Package\ Control.sublime-settings
-symlink $PWD/SublimeLinter.sublime-settings $SUBL_PATH/Packages/User/SublimeLinter.sublime-settings
+symlink $CURRENT_DIR/Preferences.sublime-settings $SUBL_PATH/Packages/User/Preferences.sublime-settings
+symlink $CURRENT_DIR/Package\ Control.sublime-settings $SUBL_PATH/Packages/User/Package\ Control.sublime-settings
+symlink $CURRENT_DIR/SublimeLinter.sublime-settings $SUBL_PATH/Packages/User/SublimeLinter.sublime-settings
+
+# Homebrew
+if [[ ! $(command -v brew) ]]; then
+  echo "-----> Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
 # Refresh the current terminal with the newly installed configuration
 exec zsh
