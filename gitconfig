@@ -26,9 +26,8 @@
 
 [core]
   pager = less -FRSX
-  editor = '/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -n -w
+	editor = '/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -n -w
   excludesfile = /Users/thomasjost/.gitignore
-
 
   # Clean merged branches
   sweep = !git branch --merged master | grep -v 'master$' | xargs git branch -d && git remote prune origin

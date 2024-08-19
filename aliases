@@ -11,4 +11,4 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
 
-alias update="sudo softwareupdate -i -a; brew update; brew outdated; brew upgrade; brew cleanup;"
+alias update="sudo softwareupdate -i -a; brew update; brew outdated; brew upgrade; brew upgrade --cask --greedy; brew outdated --cask --greedy --verbose; brew cleanup;"

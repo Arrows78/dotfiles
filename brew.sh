@@ -21,6 +21,7 @@ brew install 'zsh'
 #############################################################
 # Desktop Apps
 #############################################################
+brew install --cask 'adobe-creative-cloud'
 brew install --cask 'alt-tab'
 brew install --cask 'appcleaner'
 brew install --cask 'bitwarden'
@@ -34,12 +35,14 @@ brew install --cask 'google-chrome'
 brew install --cask 'google-drive'
 brew install --cask 'hiddenbar'
 brew install --cask 'iterm2'
+brew install --cask 'keycastr'
 brew install --cask 'latest'
 brew install --cask 'messenger'
 brew install --cask 'molotov'
 brew install --cask 'notion'
 brew install --cask 'notion-calendar'
 brew install --cask 'onyx'
+brew install --cask 'openvpn-connect'
 brew install --cask 'postman'
 brew install --cask 'raycast'
 brew install --cask 'rectangle'
@@ -80,6 +83,9 @@ brew install mas 'Usage: System Activity Monitor', id: 1561788435
 brew install mas 'WhatsApp Desktop', id: 1147396723
 brew install mas 'Xcode', id: 497799835
 brew install mas 'iMovie', id: 408981434
+
+# Upgrade any installed App Store app
+mas upgrade
 
 # Remove outdated versions from the cellar
 brew cleanup
