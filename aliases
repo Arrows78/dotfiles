@@ -2,6 +2,13 @@
 alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
 alias l='ls -lhF'
 alias la='ls -lahF'
 
@@ -11,4 +18,11 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
 
+# Copy the SSH public key to your clipboard.
+alias pubkey="pbcopy < ~/.ssh/id_ed25519.pub"
+
+# Recursively delete `.DS_Store` files
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+
+# Update macOS Software and Homebrew
 alias update="sudo softwareupdate -i -a; brew update; brew outdated; brew upgrade; brew upgrade --cask --greedy; brew outdated --cask --greedy --verbose; brew cleanup;"
