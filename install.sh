@@ -39,9 +39,15 @@ done
 # Symlink SSH config file to the present ssh config file for macOS and add SSH passphrase to the keychain
 if [[ `uname` =~ "Darwin" ]]; then
   target="$HOME_DIR/.ssh/config"
-  backup $target
-  symlink $CURRENT_DIR/sshconfig $target
-  ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+
+  if [ ! -e "$target" ]; then
+    backup $target
+    symlink $CURRENT_DIR/sshconfig $target
+  fi
+
+  if [ ! -e "$HOME_DIR/.ssh/id_ed25519" ]; then
+    ssh-add --apple-use-keychain $HOME_DIR/.ssh/id_ed25519
+  fi
 fi
 
 # zsh plugins
