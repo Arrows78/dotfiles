@@ -24,12 +24,12 @@ symlink() {
 HOME_DIR="$HOME"
 CURRENT_DIR="$PWD"
 
-# For all files `$name` in the present folder except `*.sh`, `README.md`, `sublime-settings` and `sshconfig`,
+# For all files `$name` in the present folder except `*.sh`, `README.md`, `sublime-settings`, `sublime-keymap` and `sshconfig`,
 # backup the target file located at `~/.$name` and symlink `$name` to `~/.$name`
 for name in *; do
   if [ ! -d "$name" ]; then
     target="$HOME_DIR/.$name"
-    if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [[ ! "$name" =~ '\.sublime-settings$' ]] && [[ ! "$name" =~ 'sshconfig' ]]; then
+    if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [[ ! "$name" =~ '\.sublime-settings$' ]] && [[ ! "$name" =~ '\.sublime-keymap$' ]] && [[ ! "$name" =~ 'sshconfig' ]]; then
       backup $target
       symlink $PWD/$name $target
     fi
@@ -57,11 +57,16 @@ cd "$CURRENT_DIR"
 setopt nocasematch
 if [[ ! `uname` =~ "Darwin" ]]; then
   git config --global core.editor "subl -n -w $@ >/dev/null 2>&1"
-  echo 'export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"' >> zshrc
+
+  if [[ ! $(grep "export BUNDLER_EDITOR=" zshrc) ]]; then
+    echo 'export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"' >> zshrc
+  fi
 else
   git config --global core.editor "'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -n -w"
   bundler_editor="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
-  echo "export BUNDLER_EDITOR=\"${bundler_editor} -a\"" >> zshrc
+  if [[ ! $(grep "export BUNDLER_EDITOR=" zshrc) ]]; then
+    echo "export BUNDLER_EDITOR=\"${bundler_editor} -a\"" >> zshrc
+  fi
 fi
 
 # Sublime Text
@@ -70,12 +75,21 @@ if [[ ! `uname` =~ "Darwin" ]]; then
 else
   SUBL_PATH=~/Library/Application\ Support/Sublime\ Text\ 3
 fi
+
 mkdir -p $SUBL_PATH/Packages/User $SUBL_PATH/Installed\ Packages
-backup "$SUBL_PATH/Packages/User/Preferences.sublime-settings"
-curl -k https://sublime.wbond.net/Package%20Control.sublime-package > $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package
-symlink $CURRENT_DIR/Preferences.sublime-settings $SUBL_PATH/Packages/User/Preferences.sublime-settings
-symlink $CURRENT_DIR/Package\ Control.sublime-settings $SUBL_PATH/Packages/User/Package\ Control.sublime-settings
-symlink $CURRENT_DIR/SublimeLinter.sublime-settings $SUBL_PATH/Packages/User/SublimeLinter.sublime-settings
+curl -k https://packagecontrol.io/Package%20Control.sublime-package > $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package
+
+files=(
+  "Preferences.sublime-settings"
+  "Package Control.sublime-settings"
+  "Default (OSX).sublime-keymap"
+  "SublimeLinter.sublime-settings"
+)
+
+for file in "${files[@]}"; do
+  backup $SUBL_PATH/Packages/User/$file
+  symlink $CURRENT_DIR/$file $SUBL_PATH/Packages/User/$file
+done
 
 # Homebrew
 if [[ ! $(command -v brew) ]]; then
