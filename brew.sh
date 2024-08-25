@@ -13,6 +13,7 @@ brew upgrade
 brew install 'gh'
 brew install 'git'
 brew install 'imagemagick'
+brew install 'jq'
 brew install 'mas'
 brew install 'tree'
 brew install 'wget'
@@ -71,18 +72,16 @@ brew install --cask 'font-roboto'
 #############################################################
 # App Store
 #############################################################
-brew install mas 'Bitwarden', id: 1352778147
-brew install mas 'Keynote', id: 409183694
-brew install mas 'MenubarX', id: 1575588022
-brew install mas 'Messenger', id: 1480068668
-brew install mas 'Microsoft 365', id: 1450038993
-brew install mas 'Numbers', id: 409203825
-brew install mas 'Pages', id: 409201541
-brew install mas 'Slack for Desktop', id: 803453959
-brew install mas 'Usage: System Activity Monitor', id: 1561788435
-brew install mas 'WhatsApp Desktop', id: 1147396723
-brew install mas 'Xcode', id: 497799835
-brew install mas 'iMovie', id: 408981434
+mas install '1147396723' # 'WhatsApp Desktop'
+mas install '1352778147' # 'Bitwarden'
+mas install '1450038993' # 'Microsoft 365'
+mas install '1480068668' # 'Messenger'
+mas install '1575588022' # 'MenubarX'
+mas install '408981434' # 'iMovie'
+mas install '409183694' # 'Keynote'
+mas install '409201541' # 'Pages'
+mas install '409203825' # 'Numbers'
+mas install '803453959' # 'Slack for Desktop'
 
 # Upgrade any installed App Store app
 mas upgrade
