@@ -26,7 +26,7 @@
 
 [core]
   pager = less -FRSX
-	editor = '/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -n -w
+	editor = /Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl --new-window --wait
   excludesfile = ~/.gitignore
 
   # Clean merged branches

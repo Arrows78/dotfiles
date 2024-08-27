@@ -1,8 +1,9 @@
 #!/bin/zsh
 
-# Define a function which rename a `target` file to `target.backup`
+# Function to rename a `target` file to `target.backup`
 backup() {
   target=$1
+
   if [ -e "$target" ]; then           # Does the config file already exist?
     if [ ! -L "$target" ]; then       # as a pure file? (i.e. not a symlink)
       mv "$target" "$target.backup"   # Then backup it
@@ -11,10 +12,11 @@ backup() {
   fi
 }
 
-# Define a function to create a symlink
+# Function to create a symlink
 symlink() {
   file=$1
   link=$2
+
   if [ ! -e "$link" ]; then
     echo "-----> Symlinking your new $link"
     ln -s $file $link
@@ -24,11 +26,12 @@ symlink() {
 HOME_DIR="$HOME"
 CURRENT_DIR="$PWD"
 
-# For all files `$name` in the present folder except `*.sh`, `README.md`, `sublime-settings`, `sublime-keymap` and `sshconfig`,
+# For all `$name` files in the present folder except for some specific files mentioned in the if condition,
 # backup the target file located at `~/.$name` and symlink `$name` to `~/.$name`
 for name in *; do
   if [ ! -d "$name" ]; then
     target="$HOME_DIR/.$name"
+
     if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [[ ! "$name" =~ '\.sublime-settings$' ]] && [[ ! "$name" =~ '\.sublime-keymap$' ]] && [[ ! "$name" =~ 'sshconfig' ]]; then
       backup $target
       symlink $PWD/$name $target
@@ -37,50 +40,38 @@ for name in *; do
 done
 
 # Symlink SSH config file to the present ssh config file for macOS and add SSH passphrase to the keychain
-if [[ `uname` =~ "Darwin" ]]; then
-  target="$HOME_DIR/.ssh/config"
+target="$HOME_DIR/.ssh/config"
 
-  if [ ! -e "$target" ]; then
-    backup $target
-    symlink $CURRENT_DIR/sshconfig $target
-  fi
+if [ ! -e "$target" ]; then
+  backup $target
+  symlink $CURRENT_DIR/sshconfig $target
+fi
 
-  if [ ! -e "$HOME_DIR/.ssh/id_ed25519" ]; then
-    ssh-add --apple-use-keychain $HOME_DIR/.ssh/id_ed25519
-  fi
+if [ ! -e "$HOME_DIR/.ssh/id_ed25519" ]; then
+  ssh-add --apple-use-keychain $HOME_DIR/.ssh/id_ed25519
 fi
 
 # zsh plugins
 ZSH_PLUGINS_DIR="$HOME_DIR/.oh-my-zsh/custom/plugins"
 mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR"
+
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
-  git clone git@github.com/zsh-users/zsh-syntax-highlighting.git
-  git clone git@github.com/zsh-users/zsh-autosuggestions.git
+  git clone git@github.com:zsh-users/zsh-syntax-highlighting.git
+  git clone git@github.com:zsh-users/zsh-autosuggestions.git
 fi
+
 cd "$CURRENT_DIR"
 
-setopt nocasematch
-if [[ ! `uname` =~ "Darwin" ]]; then
-  git config --global core.editor "subl -n -w $@ >/dev/null 2>&1"
+# Git editor setup for macOS
+git config --global core.editor "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl --new-window --wait"
 
-  if [[ ! $(grep "export BUNDLER_EDITOR=" zshrc) ]]; then
-    echo 'export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"' >> zshrc
-  fi
-else
-  git config --global core.editor "'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -n -w"
-  bundler_editor="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
-  if [[ ! $(grep "export BUNDLER_EDITOR=" zshrc) ]]; then
-    echo "export BUNDLER_EDITOR=\"${bundler_editor} -a\"" >> zshrc
-  fi
+if [[ ! $(grep "export EDITOR=" zshrc) ]]; then
+  echo "export EDITOR=\"subl -w -a\"" >> zshrc
 fi
 
 # Sublime Text
-if [[ ! `uname` =~ "Darwin" ]]; then
-  SUBL_PATH=~/.config/sublime-text-3
-else
-  SUBL_PATH=~/Library/Application\ Support/Sublime\ Text\ 3
-fi
+SUBL_PATH=~/Library/Application\ Support/Sublime\ Text
 
 mkdir -p $SUBL_PATH/Packages/User $SUBL_PATH/Installed\ Packages
 curl -k https://packagecontrol.io/Package%20Control.sublime-package > $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package
