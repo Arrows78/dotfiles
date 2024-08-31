@@ -10,11 +10,14 @@ brew upgrade
 #############################################################
 # Apps
 #############################################################
+brew install 'asciiquarium'
+brew install 'cmatrix'
 brew install 'gh'
 brew install 'git'
 brew install 'imagemagick'
 brew install 'jq'
 brew install 'mas'
+brew install 'toilet'
 brew install 'tree'
 brew install 'wget'
 brew install 'zsh'
