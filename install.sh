@@ -23,9 +23,29 @@ symlink() {
   fi
 }
 
+# ==============================
+# XCODE COMMAND LINE
+# ==============================
+# Install macOS Command Line Tools if not installed yet
+if [[ ! $(xcode-select --print-path) ]]; then
+  echo "-----> Installing Xcode command line tools..."
+  xcode-select --install
+fi
+
+# ==============================
+# HOMEBREW
+# ==============================
+if [[ ! $(command -v brew) ]]; then
+  echo "-----> Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 HOME_DIR="$HOME"
 CURRENT_DIR="$PWD"
 
+# ==============================
+# SYMLINK SETUP
+# ==============================
 # For all `$name` files in the present folder except for some specific files mentioned in the if condition,
 # backup the target file located at `~/.$name` and symlink `$name` to `~/.$name`
 for name in *; do
@@ -39,6 +59,11 @@ for name in *; do
   fi
 done
 
+# ==============================
+# SSH CONFIG
+# ==============================
+SSH_KEY="$HOME_DIR/.ssh/id_ed25519"
+
 # Symlink SSH config file to the present ssh config file for macOS and add SSH passphrase to the keychain
 target="$HOME_DIR/.ssh/config"
 
@@ -47,12 +72,18 @@ if [ ! -e "$target" ]; then
   symlink $CURRENT_DIR/sshconfig $target
 fi
 
-if [ ! -e "$HOME_DIR/.ssh/id_ed25519" ]; then
-  ssh-add --apple-use-keychain $HOME_DIR/.ssh/id_ed25519
+if [ ! -e "$SSH_KEY" ]; then
+  echo "Type in your email address for the SSH key: "
+  read GIT_EMAIL
+  ssh-keygen -t ed25519 -f "$SSH_KEY" -N "" -C "$GIT_EMAIL"
+  ssh-add --apple-use-keychain $SSH_KEY
 fi
 
-# zsh plugins
+# ==============================
+# ZSH PLUGINS
+# ==============================
 ZSH_PLUGINS_DIR="$HOME_DIR/.oh-my-zsh/custom/plugins"
+
 mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR"
 
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
@@ -63,6 +94,9 @@ fi
 
 cd "$CURRENT_DIR"
 
+# ==============================
+# SUBLIME TEXT
+# ==============================
 # Git editor setup for macOS
 git config --global core.editor "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl --new-window --wait"
 
@@ -70,11 +104,14 @@ if [[ ! $(grep "export EDITOR=" zshrc) ]]; then
   echo "export EDITOR=\"subl -w -a\"" >> zshrc
 fi
 
-# Sublime Text
 SUBL_PATH=~/Library/Application\ Support/Sublime\ Text
 
 mkdir -p $SUBL_PATH/Packages/User $SUBL_PATH/Installed\ Packages
-curl -k https://packagecontrol.io/Package%20Control.sublime-package > $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package
+
+if [ ! -e $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package ]; then
+  echo "-----> Installing Package Control..."
+  curl -k https://packagecontrol.io/Package%20Control.sublime-package > $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package
+fi
 
 files=(
   "Preferences.sublime-settings"
@@ -88,13 +125,7 @@ for file in "${files[@]}"; do
   symlink $CURRENT_DIR/$file $SUBL_PATH/Packages/User/$file
 done
 
-# Homebrew
-if [[ ! $(command -v brew) ]]; then
-  echo "-----> Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
 # Refresh the current terminal with the newly installed configuration
 exec zsh
 
-echo "👌 Carry on with git setup!"
+echo "🎉 All Done!"
