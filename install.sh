@@ -52,7 +52,7 @@ for name in *; do
   if [ ! -d "$name" ]; then
     target="$HOME_DIR/.$name"
 
-    if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [[ ! "$name" =~ '\.sublime-settings$' ]] && [[ ! "$name" =~ '\.sublime-keymap$' ]] && [[ ! "$name" =~ 'sshconfig' ]]; then
+    if [[ ! "$name" =~ '\.sh$' ]] && [[ "$name" != 'README.md' ]]; then
       backup $target
       symlink $PWD/$name $target
     fi
@@ -69,7 +69,7 @@ target="$HOME_DIR/.ssh/config"
 
 if [ ! -e "$target" ]; then
   backup $target
-  symlink $CURRENT_DIR/sshconfig $target
+  symlink $CURRENT_DIR/ssh/sshconfig $target
 fi
 
 if [ ! -e "$SSH_KEY" ]; then
@@ -122,7 +122,7 @@ files=(
 
 for file in "${files[@]}"; do
   backup $SUBL_PATH/Packages/User/$file
-  symlink $CURRENT_DIR/$file $SUBL_PATH/Packages/User/$file
+  symlink $CURRENT_DIR/Sublime/$file $SUBL_PATH/Packages/User/$file
 done
 
 # Refresh the current terminal with the newly installed configuration
