@@ -38,5 +38,8 @@
         "Sync Settings",
         "TrailingSpaces",
         "TypeScript"
-    ]
+    ],
+    "in_process_packages":
+    [
+    ],
 }
