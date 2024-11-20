@@ -80,11 +80,13 @@ zsh brew.sh
 
 Here’s a quick look at the files included in this repository:
 
+- `.githooks/`: Directory containing custom Git hooks.
 - `aliases`: Custom shell aliases for quick command-line shortcuts.
 - `brew.sh`: Script to install Homebrew and common packages.
 - `Brewfile`: Configuration file based on the brew.sh and generated with `brew bundle dump --describe`
 - `git_setup.sh`: Script to configure Git with your user details.
 - `gitconfig`: Global Git configuration file.
+- `hooks.sh`: Script to automatically symlink Git hooks to the `.git/hooks` directory.
 - `install.sh`: Main installation script to symlink dotfiles to your home directory.
 - `sshconfig`: Configuration file for SSH connections.
 - `vimrc`: Configuration file for Vim editor.
