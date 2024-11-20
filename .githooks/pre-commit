@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+#############################################################
+# Pre-commit hook: Brewfile updater
+#############################################################
+#
+# This pre-commit hook ensures the 'Brewfile' is always in sync
+# with updates to 'brew.sh'. When changes are detected in the
+# 'brew.sh' file staged for commit, the script regenerates the
+# 'Brewfile' using the command:
+# brew bundle dump --describe --file=Brewfile --force
+# The regenerated 'Brewfile' is then automatically added to the
+# commit. This guarantees that changes to Homebrew scripts are
+# always accompanied by an up-to-date Brewfile in the repository.
+#
+#############################################################
+
+TARGET_FILE="brew.sh"
+
+# Check if brew.sh is staged for commit
+if git diff --cached --name-only | grep -q "^${TARGET_FILE}$"; then
+    echo "Detected changes in ${TARGET_FILE}. Generating Brewfile..."
+
+    # Generate the Brewfile
+    if brew bundle dump --describe --file=Brewfile --force; then
+        echo "Brewfile generated successfully. Adding to staging area..."
+        git add Brewfile
+    else
+        echo "Error: Failed to generate Brewfile."
+        exit 1
+    fi
+else
+    echo "No changes detected in ${TARGET_FILE}. Skipping Brewfile generation."
+fi
