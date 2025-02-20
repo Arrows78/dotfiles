@@ -70,6 +70,8 @@ cask "figma"
 cask "firefox"
 cask "font-open-sans"
 cask "font-roboto"
+# GIT client
+cask "fork"
 # Desktop client for GitHub repositories
 cask "github"
 # Web browser
