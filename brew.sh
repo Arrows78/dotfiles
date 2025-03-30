@@ -28,6 +28,7 @@ brew install 'zsh'
 # Desktop Apps
 #############################################################
 brew install --cask 'adobe-creative-cloud'
+brew install --cask 'advanced-renamer'
 brew install --cask 'alt-tab'
 brew install --cask 'appcleaner'
 brew install --cask 'bitwarden'

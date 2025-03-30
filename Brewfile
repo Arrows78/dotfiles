@@ -50,6 +50,8 @@ brew "wget"
 brew "zsh"
 # Collection of apps and services for photography, design, video, web, and UX
 cask "adobe-creative-cloud"
+# Batch file renaming utility
+cask "advanced-renamer"
 # Enable Windows-like alt-tab
 cask "alt-tab"
 # Application uninstaller
