@@ -23,6 +23,12 @@ symlink() {
   fi
 }
 
+# Check if we're running under zsh
+if [ -z "$ZSH_VERSION" ]; then
+  echo "❌ This script must be run with Zsh. Try: zsh $0"
+  exit 1
+fi
+
 # ==============================
 # XCODE COMMAND LINE
 # ==============================
@@ -63,6 +69,7 @@ done
 # SSH CONFIG
 # ==============================
 SSH_KEY="$HOME_DIR/.ssh/id_ed25519"
+SSH_KEY_PUB="${SSH_KEY}.pub"
 
 # Symlink SSH config file to the present ssh config file for macOS and add SSH passphrase to the keychain
 target="$HOME_DIR/.ssh/config"
@@ -77,6 +84,7 @@ if [ ! -e "$SSH_KEY" ]; then
   read GIT_EMAIL
   ssh-keygen -t ed25519 -f "$SSH_KEY" -N "" -C "$GIT_EMAIL"
   ssh-add --apple-use-keychain $SSH_KEY
+  pbcopy < "$SSH_KEY_PUB" # Add it to https://github.com/settings/keys
 fi
 
 # ==============================
