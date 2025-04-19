@@ -60,6 +60,8 @@ cask "appcleaner"
 cask "bitwarden"
 # Remove junk and unused files
 cask "ccleaner"
+# Write, edit, and chat about your code with AI
+cask "cursor"
 # Photography workflow application and raw developer
 cask "darktable"
 # Universal database tool and SQL client
@@ -106,6 +108,8 @@ cask "postman"
 cask "raycast"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Emoji picker optimised for blind people
+cask "rocket"
 # Screenshot measurement and annotation tool
 cask "shottr"
 # Team communication and collaboration software
