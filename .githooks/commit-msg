@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+#############################################################
+# Commit-msg hook: Conventional Commit Validator
+#############################################################
+#
+# This commit-msg hook ensures that all commit messages
+# follow the Conventional Commit specification.
+#
+# It validates the commit message against a strict regex
+# pattern.
+#
+# Example of a valid commit message:
+# feat(login): add user authentication
+#
+# If the commit message does not comply, the commit is aborted
+# with an error message.
+#
+#############################################################
+
+# Regex pattern for conventional commit message
+COMMIT_REGEX="^(build|chore|ci|docs|feat|fix|perf|refactor|style|test)(\([-a-z0-9_]*\))?!?: .{1,100}"
+
+# Get the commit message
+commit_message=$(cat "$1")
+
+# Validate the commit message with the regex
+if ! [[ $commit_message =~ $COMMIT_REGEX ]]; then
+    echo "ERROR: Commit message does not follow the Conventional Commit format. (Example: feat(login): add user authentication)"
+    echo "Please use one of the following types: build, chore, ci, docs, feat, fix, perf, refactor, style, test."
+    exit 1
+fi

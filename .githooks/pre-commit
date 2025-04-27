@@ -29,6 +29,4 @@ if git diff --cached --name-only | grep -q "^${TARGET_FILE}$"; then
         echo "Error: Failed to generate Brewfile."
         exit 1
     fi
-else
-    echo "No changes detected in ${TARGET_FILE}. Skipping Brewfile generation."
 fi

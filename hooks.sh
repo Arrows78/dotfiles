@@ -17,4 +17,8 @@ for hook in "$HOOKS_DIR"/*; do
         ln -s "$CURRENT_DIR/$hook" "$LINK"
         echo "-----> Symlinking $LINK in Git hooks"
     fi
+
+    # Make the symlinked hook file executable
+    chmod +x "$LINK"
+    echo "-----> Made $LINK executable"
 done
