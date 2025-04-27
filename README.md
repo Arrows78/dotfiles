@@ -26,7 +26,7 @@ This repository includes configurations for the following tools:
 - [oh-my-zsh](http://ohmyz.sh/) – Zsh configuration framework.
 - [Sublime Text](https://www.sublimetext.com/) – A sophisticated text editor.
 - [git](https://git-scm.com/) – Version control system.
-- Ruby via [rbenv](https://github.com/rbenv/rbenv) – Ruby version management.
+- [Homebrew](https://brew.sh/) – Package manager for installing and managing software.
 
 
 ## 📦 Requirements
@@ -86,22 +86,24 @@ zsh brew.sh
 
 Here’s a quick look at the files included in this repository:
 
-- `.githooks/`: Directory containing custom Git hooks.
-- `aliases`: Custom shell aliases for quick command-line shortcuts.
-- `brew.sh`: Script to install Homebrew and common packages.
-- `Brewfile`: Configuration file based on the brew.sh and generated with `brew bundle dump --describe`
-- `git_setup.sh`: Script to configure Git with your user details.
-- `gitconfig`: Global Git configuration file.
-- `hooks.sh`: Script to automatically symlink Git hooks to the `.git/hooks` directory.
-- `install.sh`: Main installation script to symlink dotfiles to your home directory.
-- `sshconfig`: Configuration file for SSH connections.
-- `vimrc`: Configuration file for Vim editor.
-- `zshrc`: Zsh shell configuration file.
-- Sublime Text Configuration:
-  - `Default (OSX).sublime-keymap`: Custom keybindings for Sublime Text on macOS.
-  - `Package Control.sublime-settings`: Settings for Sublime Text's Package Control.
-  - `Preferences.sublime-settings`: General preferences for Sublime Text.
-  - `SublimeLinter.sublime-settings`: Configuration for SublimeLinter in Sublime Text.
+- `├── 📁 .githooks`: Custom Git hooks for automation
+- `└── 📁 ssh`: SSH configuration files
+  - `└── 📄 sshconfig`: Configuration file for SSH connections
+- `├── 📁 raycast`: Raycast configuration file backups
+- `└── 📁 sublime`: Sublime Text configuration files
+  - `├── 📄 Default (OSX).sublime-keymap`: Custom keybindings for Sublime Text on macOS
+  - `├── 📄 Package Control.sublime-settings`: Settings for Sublime Text's Package Control
+  - `├── 📄 Preferences.sublime-settings`: General preferences for Sublime Text
+  - `└── 📄 SublimeLinter.sublime-settings`: Configuration for SublimeLinter in Sublime Text
+- `├── 📄 aliases`: Custom shell aliases for quick command-line shortcuts
+- `├── 📄 brew.sh`: Script to install Homebrew and commonly used packages
+- `├── 📄 Brewfile`: Auto-generated configuration file based on the brew.sh
+- `├── 📄 git_setup.sh`: Script to configure Git with your user details
+- `├── 📄 gitconfig`: Global Git configuration file
+- `├── 📄 hooks.sh`: Script to automatically create symlinks for Git hooks in the `.git/hooks` directory
+- `├── 📄 install.sh`: Main installation script to symlink dotfiles to the home directory
+- `├── 📄 vimrc`: Configuration file for Vim editor
+- `└── 📄 zshrc`: Zsh shell configuration file
 
 
 ## 👥 Contributing
