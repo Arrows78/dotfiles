@@ -24,9 +24,36 @@ COMMIT_REGEX="^(build|chore|ci|docs|feat|fix|perf|refactor|style|test)(\([-a-z0-
 # Get the commit message
 commit_message=$(cat "$1")
 
+# Function to display error messages in red
+function error() {
+    echo "\033[0;31m$1\033[0m"
+}
+
 # Validate the commit message with the regex
 if ! [[ $commit_message =~ $COMMIT_REGEX ]]; then
-    echo "ERROR: Commit message does not follow the Conventional Commit format. (Example: feat(login): add user authentication)"
-    echo "Please use one of the following types: build, chore, ci, docs, feat, fix, perf, refactor, style, test."
+    error "\n❌ ERROR: Invalid commit message format\n"
+
+    echo "Your commit message:"
+    echo "  \"$commit_message\""
+    echo ""
+
+    echo "Expected format:"
+    echo "  <type>(<scope>)?: <description>"
+    echo ""
+
+    echo "Details:"
+    echo "- <type>        Required. One of: build, chore, ci, docs, feat, fix, perf, refactor, style, test"
+    echo "- <scope>       Optional. Lowercase, with hyphens or underscores (no spaces)"
+    echo "- !             Optional. Indicates a breaking change (put after type or scope)"
+    echo "- <description> Required. 1 to 100 characters max, describing the change"
+    echo ""
+
+    echo "✅ Examples of valid messages:"
+    echo "   feat(login): add user authentication"
+    echo "   fix(api-client)!: change response structure"
+    echo "   chore: update dependencies"
+    echo ""
+
+    error "🛑 Commit aborted. Please fix your message and try again.\n"
     exit 1
 fi
