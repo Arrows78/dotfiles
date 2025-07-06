@@ -9,6 +9,7 @@
         "AlignTab",
         "All Autocomplete",
         "AutoFileName",
+        "Babel",
         "BracketHighlighter",
         "Color Highlighter",
         "ColorPicker",
@@ -26,10 +27,12 @@
         "Ionic Framework Snippets",
         "Ionic Snippets",
         "Javascript Beautify",
+        "JsPrettier",
         "LoremIpsum",
         "MarkdownPreview",
         "MJML-syntax",
         "Package Control",
+        "React IDE",
         "Sass",
         "SideBarEnhancements",
         "Sort Lines (Numerically)",
@@ -37,7 +40,7 @@
         "SublimeLinter",
         "Sync Settings",
         "TrailingSpaces",
-        "TypeScript"
+        "TypeScript",
     ],
     "in_process_packages":
     [

@@ -130,7 +130,7 @@ files=(
 
 for file in "${files[@]}"; do
   backup $SUBL_PATH/Packages/User/$file
-  symlink $CURRENT_DIR/Sublime/$file $SUBL_PATH/Packages/User/$file
+  symlink $CURRENT_DIR/apps/sublime-text/$file $SUBL_PATH/Packages/User/$file
 done
 
 # Refresh the current terminal with the newly installed configuration

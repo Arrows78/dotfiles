@@ -84,17 +84,18 @@ zsh brew.sh
 
 ## 📂 File Overview
 
-Here’s a quick look at the files included in this repository:
+Here's a quick look at the files included in this repository:
 
 - `├── 📁 .githooks`: Custom Git hooks for automation
-- `└── 📁 ssh`: SSH configuration files
+- `└── 📁 apps/`: Application-specific configuration files
+  - `├── 📁 raycast/`: Raycast configuration file backups
+  - `└── 📁 sublime-text/`: Sublime Text configuration files
+    - `├── 📄 Default (OSX).sublime-keymap`: Custom keybindings for Sublime Text on macOS
+    - `├── 📄 Package Control.sublime-settings`: Settings for Sublime Text's Package Control
+    - `├── 📄 Preferences.sublime-settings`: General preferences for Sublime Text
+    - `└── 📄 SublimeLinter.sublime-settings`: Configuration for SublimeLinter in Sublime Text
+- `├── 📁 ssh`: SSH configuration files
   - `└── 📄 sshconfig`: Configuration file for SSH connections
-- `├── 📁 raycast`: Raycast configuration file backups
-- `└── 📁 sublime`: Sublime Text configuration files
-  - `├── 📄 Default (OSX).sublime-keymap`: Custom keybindings for Sublime Text on macOS
-  - `├── 📄 Package Control.sublime-settings`: Settings for Sublime Text's Package Control
-  - `├── 📄 Preferences.sublime-settings`: General preferences for Sublime Text
-  - `└── 📄 SublimeLinter.sublime-settings`: Configuration for SublimeLinter in Sublime Text
 - `├── 📄 aliases`: Custom shell aliases for quick command-line shortcuts
 - `├── 📄 brew.sh`: Script to install Homebrew and commonly used packages
 - `├── 📄 Brewfile`: Auto-generated configuration file based on the brew.sh
