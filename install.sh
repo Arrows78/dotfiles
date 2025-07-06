@@ -1,5 +1,38 @@
 #!/bin/zsh
 
+# ==============================
+# COLORS
+# ==============================
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# ==============================
+# MESSAGE FUNCTIONS
+# ==============================
+success() {
+  echo "${GREEN}✅ $1${NC}"
+}
+
+info() {
+  echo "${BLUE}-----> $1${NC}"
+}
+
+warning() {
+  echo "${YELLOW}⚠️ $1${NC}"
+}
+
+error() {
+  echo "${RED}❌ $1${NC}"
+}
+
+highlight() {
+  echo "${CYAN}$1${NC}"
+}
+
 # Function to rename a `target` file to `target.backup`
 backup() {
   target=$1
@@ -7,7 +40,7 @@ backup() {
   if [ -e "$target" ]; then           # Does the config file already exist?
     if [ ! -L "$target" ]; then       # as a pure file? (i.e. not a symlink)
       mv "$target" "$target.backup"   # Then backup it
-      echo "-----> Moved your old $target config file to $target.backup"
+      warning "Moved your old config file $(highlight $target) --> $(highlight $target.backup)"
     fi
   fi
 }
@@ -18,14 +51,14 @@ symlink() {
   link=$2
 
   if [ ! -e "$link" ]; then
-    echo "-----> Symlinking your new $link"
-    ln -s $file $link
+    info "Symlinking your new file $(highlight $link)"
+    ln -s "$file" "$link"
   fi
 }
 
 # Check if we're running under zsh
 if [ -z "$ZSH_VERSION" ]; then
-  echo "❌ This script must be run with Zsh. Try: zsh $0"
+  error "This script must be run with Zsh. Try: $(highlight "zsh $0")"
   exit 1
 fi
 
@@ -34,16 +67,22 @@ fi
 # ==============================
 # Install macOS Command Line Tools if not installed yet
 if [[ ! $(xcode-select --print-path) ]]; then
-  echo "-----> Installing Xcode command line tools..."
+  info "Installing $(highlight Xcode command line tools)..."
   xcode-select --install
+  success "Xcode Command Line Tools installation initiated"
+else
+  success "Xcode Command Line Tools already installed"
 fi
 
 # ==============================
 # HOMEBREW
 # ==============================
 if [[ ! $(command -v brew) ]]; then
-  echo "-----> Installing Homebrew..."
+  info "Installing $(highlight Homebrew)..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  success "Homebrew installed successfully"
+else
+  success "Homebrew already installed"
 fi
 
 HOME_DIR="$HOME"
@@ -84,7 +123,8 @@ if [ ! -e "$SSH_KEY" ]; then
   read GIT_EMAIL
   ssh-keygen -t ed25519 -f "$SSH_KEY" -N "" -C "$GIT_EMAIL"
   ssh-add --apple-use-keychain $SSH_KEY
-  pbcopy < "$SSH_KEY_PUB" # Add it to https://github.com/settings/keys
+  pbcopy < "$SSH_KEY_PUB"
+  success "SSH key generated and copied to clipboard. Add it to $(highlight https://github.com/settings/keys)"
 fi
 
 # ==============================
@@ -95,9 +135,12 @@ ZSH_PLUGINS_DIR="$HOME_DIR/.oh-my-zsh/custom/plugins"
 mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR"
 
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
-  echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
+  info "Installing zsh plugin $(highlight 'zsh-syntax-highlighting')..."
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
   git clone https://github.com/zsh-users/zsh-autosuggestions.git
+  success "Zsh plugins installed successfully"
+else
+  success "Zsh plugins already installed"
 fi
 
 cd "$CURRENT_DIR"
@@ -110,6 +153,7 @@ git config --global core.editor "/Applications/Sublime\ Text.app/Contents/Shared
 
 if [[ ! $(grep "export EDITOR=" zshrc) ]]; then
   echo "export EDITOR=\"subl -w -a\"" >> zshrc
+  success "Added $(highlight EDITOR) to zshrc"
 fi
 
 SUBL_PATH=~/Library/Application\ Support/Sublime\ Text
@@ -117,8 +161,9 @@ SUBL_PATH=~/Library/Application\ Support/Sublime\ Text
 mkdir -p $SUBL_PATH/Packages/User $SUBL_PATH/Installed\ Packages
 
 if [ ! -e $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package ]; then
-  echo "-----> Installing Package Control..."
+  info "Installing $(highlight Package Control)..."
   curl -k https://packagecontrol.io/Package%20Control.sublime-package > $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package
+  success "Package Control installed"
 fi
 
 files=(
@@ -133,7 +178,8 @@ for file in "${files[@]}"; do
   symlink $CURRENT_DIR/apps/sublime-text/$file $SUBL_PATH/Packages/User/$file
 done
 
-# Refresh the current terminal with the newly installed configuration
-exec zsh
+success "Sublime Text configuration complete"
 
-echo "🎉 All Done!"
+# Refresh the current terminal with the newly installed configuration
+success "Installation completed successfully! All Done! 🎉"
+exec zsh
