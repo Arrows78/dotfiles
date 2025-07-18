@@ -2,7 +2,7 @@
 	"bold_folder_labels": true,
 	"color_scheme": "Monokai.sublime-color-scheme",
 	"default_encoding": "UTF-8",
-	"font_size": 12,
+	"font_size": 13,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"hot_exit": "always",

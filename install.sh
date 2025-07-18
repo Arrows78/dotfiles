@@ -157,6 +157,7 @@ if [[ ! $(grep "export EDITOR=" zshrc) ]]; then
 fi
 
 SUBL_PATH=~/Library/Application\ Support/Sublime\ Text
+SUBL_DOTFILES_PATH="$CURRENT_DIR/apps/sublime-text"
 
 mkdir -p $SUBL_PATH/Packages/User $SUBL_PATH/Installed\ Packages
 
@@ -166,16 +167,10 @@ if [ ! -e $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package ]; the
   success "Package Control installed"
 fi
 
-files=(
-  "Preferences.sublime-settings"
-  "Package Control.sublime-settings"
-  "Default (OSX).sublime-keymap"
-  "SublimeLinter.sublime-settings"
-)
-
-for file in "${files[@]}"; do
-  backup $SUBL_PATH/Packages/User/$file
-  symlink $CURRENT_DIR/apps/sublime-text/$file $SUBL_PATH/Packages/User/$file
+for file in $SUBL_DOTFILES_PATH/*; do
+  filename=$(basename "$file")
+  backup "$SUBL_PATH/Packages/User/$filename"
+  symlink "$file" "$SUBL_PATH/Packages/User/$filename"
 done
 
 success "Sublime Text configuration complete"
