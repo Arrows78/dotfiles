@@ -1,5 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/services"
+tap "smudge/smudge"
 # New file format for still image compression
 brew "jpeg-xl"
 # Codec library for encoding and decoding AV1 video streams
@@ -8,6 +9,8 @@ brew "aom"
 brew "asciiquarium"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
 # Core application library for C
 brew "glib"
 # Console Matrix
@@ -40,14 +43,20 @@ brew "nvm"
 brew "pkgconf"
 # Python version management
 brew "pyenv"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Color-based alternative to figlet (uses libcaca)
 brew "toilet"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Internet file retriever
 brew "wget"
+# JavaScript package manager
+brew "yarn"
 # UNIX shell (command interpreter)
 brew "zsh"
+# A CLI for configuring 'Night Shift' on macOS 🌕🌖🌗🌘🌑
+brew "smudge/smudge/nightlight"
 # Collection of apps and services for photography, design, video, web, and UX
 cask "adobe-creative-cloud"
 # Batch file renaming utility
@@ -60,6 +69,8 @@ cask "appcleaner"
 cask "bitwarden"
 # Remove junk and unused files
 cask "ccleaner"
+# Image, video and clipboard optimiser
+cask "clop"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Photography workflow application and raw developer
@@ -122,6 +133,8 @@ cask "stats"
 cask "sublime-merge"
 # Text editor for code, markup and prose
 cask "sublime-text"
+# Dictation tool including LLM reformatting
+cask "superwhisper"
 # Interior design application
 cask "sweet-home3d"
 # Sync and backup service to Synology NAS drives
@@ -136,7 +149,8 @@ cask "wacom-tablet"
 cask "whatsapp"
 # Video communication and virtual meeting platform
 cask "zoom"
-mas "HP Smart", id: 1474276998
+mas "Bitwarden", id: 1352778147
+mas "HP", id: 1474276998
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "MenubarX", id: 1575588022
@@ -145,4 +159,6 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Slack", id: 803453959
 mas "Xcode", id: 497799835
+vscode "ms-vscode.sublime-keybindings"
