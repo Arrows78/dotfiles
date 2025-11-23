@@ -25,4 +25,4 @@ alias pubkey="pbcopy < ~/.ssh/id_ed25519.pub"
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # Update macOS Software and Homebrew
-alias update="sudo softwareupdate -i -a; brew update; brew outdated; brew upgrade; brew upgrade --cask --greedy; brew outdated --cask --greedy --verbose; brew cleanup;"
+alias update="sudo -v; sudo softwareupdate -ia; brew update; brew outdated --greedy --verbose; brew upgrade --greedy; brew autoremove; brew cleanup; brew doctor;"
