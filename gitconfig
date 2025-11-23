@@ -54,7 +54,8 @@
   autocorrect = 1
 
 [push]
-  default = simple
+  default = current
+  autoSetupRemote = true
 
 [user]
   email = thomas.jost78@gmail.com
