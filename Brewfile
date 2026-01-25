@@ -1,5 +1,3 @@
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "smudge/smudge"
 # New file format for still image compression
 brew "jpeg-xl"
@@ -15,7 +13,7 @@ brew "bat"
 brew "glib"
 # Console Matrix
 brew "cmatrix"
-# Play, record, convert, and stream audio and video
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # Banner-like program prints strings as ASCII art
 brew "figlet"
@@ -29,14 +27,16 @@ brew "git"
 brew "httpd"
 # ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
 brew "libheif"
-# Tools and libraries to manipulate images in many formats
+# Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Fast, flexible, config-based cli for linting Markdown/CommonMark files
+brew "markdownlint-cli2"
 # Mac App Store command-line interface
 brew "mas"
-# Platform built on V8 to build network applications
-brew "node"
 # Manage multiple Node.js versions
 brew "nvm"
 # Package compiler and linker metadata toolkit
@@ -45,6 +45,8 @@ brew "pkgconf"
 brew "pyenv"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Autoformat shell script source code
+brew "shfmt"
 # Color-based alternative to figlet (uses libcaca)
 brew "toilet"
 # Display directories as trees (with optional color/HTML output)
@@ -149,7 +151,6 @@ cask "wacom-tablet"
 cask "whatsapp"
 # Video communication and virtual meeting platform
 cask "zoom"
-mas "Bitwarden", id: 1352778147
 mas "HP", id: 1474276998
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694

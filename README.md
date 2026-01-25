@@ -28,7 +28,6 @@ This repository includes configurations for the following tools:
 - [git](https://git-scm.com/) – Version control system.
 - [Homebrew](https://brew.sh/) – Package manager for installing and managing software.
 
-
 ## 📦 Requirements
 
 This repository includes configurations for several tools and applications. Ensure the following tools are installed before proceeding:
@@ -52,7 +51,7 @@ git clone git@github.com:Arrows78/dotfiles.git
 cd dotfiles
 ```
 
-2. Run the installers
+1. Run the installers
 
 Run the following scripts to set up your environment:
 
@@ -105,7 +104,6 @@ Here's a quick look at the files included in this repository:
 - `├── 📄 install.sh`: Main installation script to symlink dotfiles to the home directory
 - `├── 📄 vimrc`: Configuration file for Vim editor
 - `└── 📄 zshrc`: Zsh shell configuration file
-
 
 ## 👥 Contributing
 

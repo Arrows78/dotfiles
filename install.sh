@@ -37,11 +37,10 @@ highlight() {
 backup() {
   target=$1
 
-  if [ -e "$target" ]; then           # Does the config file already exist?
-    if [ ! -L "$target" ]; then       # as a pure file? (i.e. not a symlink)
-      mv "$target" "$target.backup"   # Then backup it
-      warning "Moved your old config file $(highlight $target) --> $(highlight $target.backup)"
-    fi
+  # Does the config file already exist and as a pure file? (i.e. not a symlink)
+  if [ -e "$target" ] && [ ! -L "$target" ]; then
+    mv "$target" "$target.backup" # Then backup it
+    warning "Moved your old config file $(highlight "$target") --> $(highlight "$target.backup")"
   fi
 }
 
@@ -51,7 +50,7 @@ symlink() {
   link=$2
 
   if [ ! -e "$link" ]; then
-    info "Symlinking your new file $(highlight $link)"
+    info "Symlinking your new file $(highlight "$link")"
     ln -s "$file" "$link"
   fi
 }
@@ -63,7 +62,7 @@ if [ -z "$ZSH_VERSION" ]; then
 fi
 
 # ==============================
-# XCODE COMMAND LINE
+# XCODE COMMAND LINE TOOLS
 # ==============================
 # Install macOS Command Line Tools if not installed yet
 if [[ ! $(xcode-select --print-path) ]]; then
@@ -97,9 +96,9 @@ for name in *; do
   if [ ! -d "$name" ]; then
     target="$HOME_DIR/.$name"
 
-    if [[ ! "$name" =~ '\.sh$' ]] && [[ "$name" != 'README.md' ]]; then
-      backup $target
-      symlink $PWD/$name $target
+    if [[ ! "$name" =~ \.sh$ ]] && [[ "$name" != README.md ]]; then
+      backup "$target"
+      symlink "$PWD/$name" "$target"
     fi
   fi
 done
@@ -114,16 +113,16 @@ SSH_KEY_PUB="${SSH_KEY}.pub"
 target="$HOME_DIR/.ssh/config"
 
 if [ ! -e "$target" ]; then
-  backup $target
-  symlink $CURRENT_DIR/ssh/sshconfig $target
+  backup "$target"
+  symlink "$CURRENT_DIR/ssh/sshconfig" "$target"
 fi
 
 if [ ! -e "$SSH_KEY" ]; then
   echo "Type in your email address for the SSH key: "
-  read GIT_EMAIL
+  read -r GIT_EMAIL
   ssh-keygen -t ed25519 -f "$SSH_KEY" -N "" -C "$GIT_EMAIL"
-  ssh-add --apple-use-keychain $SSH_KEY
-  pbcopy < "$SSH_KEY_PUB"
+  ssh-add --apple-use-keychain "$SSH_KEY"
+  pbcopy <"$SSH_KEY_PUB"
   success "SSH key generated and copied to clipboard. Add it to $(highlight https://github.com/settings/keys)"
 fi
 
@@ -132,7 +131,7 @@ fi
 # ==============================
 ZSH_PLUGINS_DIR="$HOME_DIR/.oh-my-zsh/custom/plugins"
 
-mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR"
+mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR" || exit 1
 
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   info "Installing zsh plugin $(highlight 'zsh-syntax-highlighting')..."
@@ -143,31 +142,31 @@ else
   success "Zsh plugins already installed"
 fi
 
-cd "$CURRENT_DIR"
+cd "$CURRENT_DIR" || exit 1
 
 # ==============================
 # SUBLIME TEXT
 # ==============================
 # Git editor setup for macOS
-git config --global core.editor "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl --new-window --wait"
+git config --global core.editor "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl --new-window --wait"
 
 if [[ ! $(grep "export EDITOR=" zshrc) ]]; then
-  echo "export EDITOR=\"subl -w -a\"" >> zshrc
+  echo "export EDITOR=\"subl -w -a\"" >>zshrc
   success "Added $(highlight EDITOR) to zshrc"
 fi
 
-SUBL_PATH=~/Library/Application\ Support/Sublime\ Text
+SUBL_PATH="$HOME_DIR/Library/Application Support/Sublime Text"
 SUBL_DOTFILES_PATH="$CURRENT_DIR/apps/sublime-text"
 
-mkdir -p $SUBL_PATH/Packages/User $SUBL_PATH/Installed\ Packages
+mkdir -p "$SUBL_PATH/Packages/User" "$SUBL_PATH/Installed Packages"
 
-if [ ! -e $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package ]; then
+if [ ! -e "$SUBL_PATH/Installed Packages/Package Control.sublime-package" ]; then
   info "Installing $(highlight Package Control)..."
-  curl -k https://packagecontrol.io/Package%20Control.sublime-package > $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package
+  curl -fSL https://packagecontrol.io/Package%20Control.sublime-package >"$SUBL_PATH/Installed Packages/Package Control.sublime-package"
   success "Package Control installed"
 fi
 
-for file in $SUBL_DOTFILES_PATH/*; do
+for file in "$SUBL_DOTFILES_PATH"/*; do
   filename=$(basename "$file")
   backup "$SUBL_PATH/Packages/User/$filename"
   symlink "$file" "$SUBL_PATH/Packages/User/$filename"
@@ -175,6 +174,7 @@ done
 
 success "Sublime Text configuration complete"
 
-# Refresh the current terminal with the newly installed configuration
 success "Installation completed successfully! All Done! 🎉"
+
+# Refresh the current terminal with the newly installed configuration
 exec zsh
