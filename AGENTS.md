@@ -26,3 +26,4 @@ Hooks are activated via `git config core.hooksPath .githooks`. The commit-msg ho
 
 - Do **not** run `install.sh` or `brew.sh` on Linux — they depend on macOS-only tools (`xcode-select`, `pbcopy`, `mas`, Homebrew casks, etc.)
 - The `Brewfile` is auto-generated from `brew.sh`; do not edit it manually
+- `zsh` must be installed for git hooks to execute (the hooks use `#!/bin/zsh` shebangs)
