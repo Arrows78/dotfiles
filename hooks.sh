@@ -1,4 +1,18 @@
 #!/bin/zsh
+# =============================================================================
+# hooks.sh — Git hooks installer
+# =============================================================================
+#
+# Symlinks all hooks from .githooks/ into .git/hooks/ and makes them
+# executable. Run this once after cloning the repository.
+#
+# Available hooks:
+#   - commit-msg : Enforces the Conventional Commit specification
+#   - pre-commit : Regenerates Brewfile when brew.sh is staged for commit
+#
+# Usage:
+#   zsh hooks.sh
+# =============================================================================
 
 CURRENT_DIR="$PWD"
 HOOKS_DIR=".githooks"

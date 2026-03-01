@@ -1,4 +1,24 @@
 #!/bin/zsh
+# =============================================================================
+# install.sh — Main dotfiles installer
+# =============================================================================
+#
+# Sets up the full development environment by:
+#   1. Installing Xcode Command Line Tools (if missing)
+#   2. Installing Homebrew (if missing)
+#   3. Symlinking all dotfiles from this repo to ~/
+#   4. Configuring SSH (generates an Ed25519 key pair if none exists)
+#   5. Installing Zsh plugins (zsh-syntax-highlighting, zsh-autosuggestions)
+#   6. Setting up Sublime Text with Package Control and synced config
+#
+# Usage:
+#   zsh install.sh
+#
+# Requirements:
+#   - macOS
+#   - oh-my-zsh installed → https://ohmyz.sh
+#   - Run from the root of the dotfiles repository
+# =============================================================================
 
 # ==============================
 # COLORS

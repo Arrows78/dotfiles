@@ -1,4 +1,20 @@
 #!/bin/zsh
+# =============================================================================
+# brew.sh — Homebrew packages & applications installer
+# =============================================================================
+#
+# Installs and upgrades:
+#   - CLI tools (developer utilities, formatters, linters)
+#   - Desktop applications via Homebrew Cask
+#   - Fonts
+#   - Mac App Store applications via mas
+#
+# Usage:
+#   zsh brew.sh
+#
+# Note: The Brewfile is automatically regenerated from this file via the
+#       pre-commit Git hook whenever this file is staged for commit.
+# =============================================================================
 
 # Make sure we’re using the latest Homebrew
 brew update
@@ -10,27 +26,27 @@ brew outdated
 brew upgrade
 
 #############################################################
-# Apps
+# CLI Tools
 #############################################################
-brew install 'asciiquarium'
-brew install 'bat'
-brew install 'cmatrix'
-brew install 'figlet'
-brew install 'gh'
-brew install 'git'
-brew install 'imagemagick'
-brew install 'jq'
-brew install 'markdownlint-cli2'
-brew install 'mas'
-brew install 'node'
-brew install 'shellcheck'
-brew install 'shfmt'
-brew install 'smudge/smudge/nightlight'
-brew install 'toilet'
-brew install 'tree'
-brew install 'wget'
-brew install 'yarn'
-brew install 'zsh'
+brew install 'asciiquarium'             # Aquarium animation in the terminal (fun)
+brew install 'bat'                      # cat with syntax highlighting and Git integration
+brew install 'cmatrix'                  # Matrix-style terminal animation
+brew install 'figlet'                   # Generate large ASCII art text banners
+brew install 'gh'                       # GitHub CLI — manage PRs, issues, repos from the terminal
+brew install 'git'                      # Version control (always keep up-to-date)
+brew install 'imagemagick'              # CLI image conversion and manipulation
+brew install 'jq'                       # Parse and transform JSON from the command line
+brew install 'markdownlint-cli2'        # Markdown linter for consistent documentation style
+brew install 'mas'                      # CLI for the Mac App Store (used below)
+brew install 'node'                     # Node.js runtime and npm package manager
+brew install 'shellcheck'               # Static analysis / linter for shell scripts
+brew install 'shfmt'                    # Shell script formatter
+brew install 'smudge/smudge/nightlight' # Control macOS Night Shift from the terminal
+brew install 'toilet'                   # Generate coloured ASCII banners (extends figlet)
+brew install 'tree'                     # Display directory structure as a tree
+brew install 'wget'                     # Download files from the web via CLI
+brew install 'yarn'                     # Fast, reliable npm-compatible package manager
+brew install 'zsh'                      # Zsh shell (latest version, managed by Homebrew)
 
 #############################################################
 # Desktop Apps
@@ -40,6 +56,7 @@ brew install --cask 'advanced-renamer'
 brew install --cask 'alt-tab'
 brew install --cask 'appcleaner'
 brew install --cask 'bitwarden'
+brew install --cask 'claude-code'
 brew install --cask 'ccleaner'
 brew install --cask 'clop'
 brew install --cask 'cursor'

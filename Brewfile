@@ -71,6 +71,8 @@ cask "appcleaner"
 cask "bitwarden"
 # Remove junk and unused files
 cask "ccleaner"
+# Terminal-based AI coding assistant
+cask "claude-code"
 # Image, video and clipboard optimiser
 cask "clop"
 # Write, edit, and chat about your code with AI
@@ -85,8 +87,6 @@ cask "discord"
 cask "figma"
 # Web browser
 cask "firefox"
-cask "font-open-sans"
-cask "font-roboto"
 # GIT client
 cask "fork"
 # Desktop client for GitHub repositories
@@ -160,6 +160,8 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Slack", id: 803453959
 mas "Xcode", id: 497799835
+vscode "dbaeumer.vscode-eslint"
+vscode "esbenp.prettier-vscode"
 vscode "ms-vscode.sublime-keybindings"
+vscode "openai.chatgpt"

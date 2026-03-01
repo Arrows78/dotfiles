@@ -51,31 +51,31 @@ git clone git@github.com:Arrows78/dotfiles.git
 cd dotfiles
 ```
 
-1. Run the installers
+2. Run the installers in order
 
 Run the following scripts to set up your environment:
 
-- Dotfiles installer
+- **Dotfiles installer** — symlinks config files, sets up SSH, installs Zsh plugins and Sublime Text
 
 ```bash
 zsh install.sh
 ```
 
-- Git Configuration Installer:
+- **Git configuration** — sets your global `user.name` and `user.email`
 
 ```bash
 zsh git_setup.sh
 ```
 
-☝️ This will prompt you for your name (Firstname Lastname) and your email of your GitHub account.
+☝️ This will prompt you for your name (Firstname Lastname) and the email linked to your GitHub account.
 
-- Git Hooks Installer:
+- **Git hooks** — symlinks `.githooks/` into `.git/hooks/` to enforce commit conventions
 
 ```bash
 zsh hooks.sh
 ```
 
-- Homebrew installer
+- **Homebrew** — installs all CLI tools, desktop apps, fonts and App Store apps
 
 ```bash
 zsh brew.sh
@@ -86,6 +86,8 @@ zsh brew.sh
 Here's a quick look at the files included in this repository:
 
 - `├── 📁 .githooks`: Custom Git hooks for automation
+  - `├── 📄 commit-msg`: Validates commit messages against the [Conventional Commits](https://www.conventionalcommits.org) spec
+  - `└── 📄 pre-commit`: Regenerates `Brewfile` automatically when `brew.sh` is staged for commit
 - `└── 📁 apps/`: Application-specific configuration files
   - `├── 📁 raycast/`: Raycast configuration file backups
   - `└── 📁 sublime-text/`: Sublime Text configuration files
