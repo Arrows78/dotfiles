@@ -168,7 +168,7 @@ cd "$CURRENT_DIR" || exit 1
 # SUBLIME TEXT
 # ==============================
 # Git editor setup for macOS
-git config --global core.editor "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl --new-window --wait"
+git config --global core.editor '"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" --new-window --wait'
 
 if [[ ! $(grep "export EDITOR=" zshrc) ]]; then
   echo "export EDITOR=\"subl -w -a\"" >>zshrc

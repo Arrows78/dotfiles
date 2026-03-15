@@ -7,10 +7,15 @@
   ci = commit
   fo = fetch origin
   d = !git --no-pager diff
-  dt  = difftool
+  dt = difftool
   stat = !git --no-pager diff --stat
+  # Clean merged branches
+  sweep = !git branch --merged main | grep -v 'main$' | xargs git branch -d && git remote prune origin
+  lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
+  m = checkout main
+  unstage = reset HEAD --
 
-[branch "master"]
+[branch "main"]
   mergeoptions = --no-edit
 
 [color]
@@ -26,23 +31,8 @@
 
 [core]
   pager = less -FRSX
-	editor = /Applications/Sublime Text.app/Contents/SharedSupport/bin/subl --new-window --wait
+  editor = \"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl\" --new-window --wait
   excludesfile = ~/.gitignore
-
-  # Clean merged branches
-  sweep = !git branch --merged master | grep -v 'master$' | xargs git branch -d && git remote prune origin
-
-  # http://www.jukie.net/bart/blog/pimping-out-git-log
-  lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
-
-  # Serve local repo. http://coderwall.com/p/eybtga
-  # Then other can access via `git clone git://#{YOUR_IP_ADDRESS}/
-  serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
-
-  m = checkout master
-
-  # Removes a file from the index
-  unstage = reset HEAD --
 
 [filter "lfs"]
   clean = git-lfs clean -- %f
@@ -52,6 +42,9 @@
 
 [help]
   autocorrect = 1
+
+[init]
+  defaultBranch = main
 
 [push]
   default = current
