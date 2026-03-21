@@ -95,6 +95,8 @@ cask "github"
 cask "google-chrome"
 # Client for the Google Drive storage service
 cask "google-drive"
+# Speech to text application
+cask "handy"
 # Utility to hide menu bar items
 cask "hiddenbar"
 # Terminal emulator as alternative to Apple's Terminal app

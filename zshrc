@@ -1,9 +1,13 @@
-ZSH=$HOME/.oh-my-zsh
+# ==============================
+# OH MY ZSH CONFIGURATION
+# ==============================
+export ZSH=$HOME/.oh-my-zsh
 
-# Set the theme for Oh-My-Zsh (Change the theme: https://github.com/robbyrussell/oh-my-zsh/wiki/themes)
+# Theme
+# Change the theme: https://github.com/robbyrussell/oh-my-zsh/wiki/themes
 ZSH_THEME="robbyrussell"
 
-# Useful oh-my-zsh plugins
+# Useful plugins
 plugins=(
     colored-man-pages
     colorize
@@ -18,40 +22,56 @@ plugins=(
     zsh-syntax-highlighting
 )
 
-# Prevent Homebrew from reporting - https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
-export HOMEBREW_NO_ANALYTICS=1
-
-# Actually load Oh-My-Zsh
+# Load Oh My Zsh
 source "${ZSH}/oh-my-zsh.sh"
 
-# Disable interactive rm alias brought by common-aliases plugin
-unalias rm
+# ==============================
+# HOMEBREW
+# ==============================
+# Prevent Homebrew from reporting
+# More information: https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
+export HOMEBREW_NO_ANALYTICS=1
 
-# Load rbenv if installed (To manage your Ruby versions)
-export PATH="${HOME}/.rbenv/bin:${PATH}" # Needed for Linux/WSL
-type -a rbenv > /dev/null && eval "$(rbenv init -)"
+# ==============================
+# PATH MANAGEMENT
+# ==============================
+# Global paths
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
-# Load pyenv (To manage your Python versions)
-export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
-type -a pyenv > /dev/null && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)"
+# Project-local binaries (Rails, Node, etc.)
+export PATH="./bin:./node_modules/.bin:$PATH"
 
-# Load nvm if installed (To manage your Node versions)
+# ==============================
+# LANGUAGE VERSION MANAGERS
+# ==============================
+# Ruby version manager (rbenv)
+if type rbenv &>/dev/null; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+# Python version manager (pyenv)
+if type pyenv &>/dev/null; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+# Node version manager (nvm)
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 
-# Rails and Ruby uses the local `bin` folder to store binstubs.
-# So instead of running `bin/rails` like the doc says, just run `rails`
-# Same for `./node_modules/.bin` and nodejs
-export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
-
-# Store your own aliases in the ~/.aliases file and load the here.
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
-
-# Encoding stuff for the terminal
+# ==============================
+# TERMINAL CONFIG
+# ==============================
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
 export EDITOR="subl -w -a"
+
+setopt HIST_IGNORE_ALL_DUPS
+
+# Store your own aliases in the ~/.aliases file and load it here
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
 # Add my dotfiles folder
 export DOTFILES=~/Documents/Labs/dotfiles

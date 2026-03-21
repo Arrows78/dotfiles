@@ -46,7 +46,7 @@ Follow these steps to set up your environment using these dotfiles:
 
 Your dotfiles are personal, so start by cloning this repository on GitHub to your computer.
 
-```
+```bash
 git clone git@github.com:Arrows78/dotfiles.git
 cd dotfiles
 ```
