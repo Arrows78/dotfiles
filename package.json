@@ -1,0 +1,15 @@
+{
+  "name": "@arrows78/dotfiles-installer",
+  "version": "1.0.0",
+  "private": false,
+  "description": "CLI installer for Arrows78 dotfiles",
+  "bin": {
+    "dotfiles": "./bin/dotfiles.js"
+  },
+  "keywords": [
+    "dotfiles",
+    "installer",
+    "macos"
+  ],
+  "license": "MIT"
+}

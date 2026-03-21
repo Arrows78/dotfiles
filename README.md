@@ -42,6 +42,38 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 Follow these steps to set up your environment using these dotfiles:
 
+### Option A - One command with npx (recommended)
+
+Run the complete setup directly from GitHub:
+
+```bash
+npx github:Arrows78/dotfiles
+```
+
+This runs, in order:
+
+- `install.sh`
+- `git_setup.sh`
+- `hooks.sh`
+- `brew.sh`
+
+You can also run a single step:
+
+```bash
+npx github:Arrows78/dotfiles install
+npx github:Arrows78/dotfiles git
+npx github:Arrows78/dotfiles hooks
+npx github:Arrows78/dotfiles brew
+```
+
+To show available commands:
+
+```bash
+npx github:Arrows78/dotfiles help
+```
+
+### Option B - Manual installation from a local clone
+
 1. Clone the repository
 
 Your dotfiles are personal, so start by cloning this repository on GitHub to your computer.
