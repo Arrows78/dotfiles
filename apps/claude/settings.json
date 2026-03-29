@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "permissions": {
+    "Bash": { "enabled": true, "description": "Allow running shell commands" },
+    "Edit": { "enabled": true, "description": "Allow editing files" },
+    "Glob": { "enabled": true, "description": "Allow file path matching" },
+    "Grep": { "enabled": true, "description": "Allow searching file contents" },
+    "Read": { "enabled": true, "description": "Allow reading files" },
+    "Task": { "enabled": true, "description": "Allow launching sub-agents" },
+    "WebFetch": { "enabled": true, "description": "Allow fetching web content" },
+    "WebSearch": { "enabled": true, "description": "Allow web search" },
+    "CodeSearch": { "enabled": true, "description": "Allow code search" }
+  },
+  "env": {
+    "EDITOR": "vim"
+  },
+  "display": {
+    "theme": "dark",
+    "compact": false
+  },
+  "model": "claude-3-5-sonnet-20241022",
+  "maxTokens": 4096,
+  "autoApply": false,
+  "telemetry": false,
+  "display.showTokenCount": true,
+  "display.compactMode": false,
+  "agent": "default"
+}

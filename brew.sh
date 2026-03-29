@@ -16,7 +16,7 @@
 #       pre-commit Git hook whenever this file is staged for commit.
 # =============================================================================
 
-# Make sure we’re using the latest Homebrew
+# Make sure we're using the latest Homebrew
 brew update
 
 # List which installed packages are outdated with
@@ -28,6 +28,7 @@ brew upgrade
 #############################################################
 # CLI Tools
 #############################################################
+brew install 'anomalyco/tap/opencode'   # OpenCode AI coding assistant
 brew install 'asciiquarium'             # Aquarium animation in the terminal (fun)
 brew install 'bat'                      # cat with syntax highlighting and Git integration
 brew install 'cmatrix'                  # Matrix-style terminal animation
@@ -41,6 +42,7 @@ brew install 'mas'                      # CLI for the Mac App Store (used below)
 brew install 'node'                     # Node.js runtime and npm package manager
 brew install 'shellcheck'               # Static analysis / linter for shell scripts
 brew install 'shfmt'                    # Shell script formatter
+brew install 'sl'                       # Steam Locomotive animation
 brew install 'smudge/smudge/nightlight' # Control macOS Night Shift from the terminal
 brew install 'toilet'                   # Generate coloured ASCII banners (extends figlet)
 brew install 'tree'                     # Display directory structure as a tree
@@ -76,6 +78,7 @@ brew install --cask 'keycastr'
 brew install --cask 'latest'
 brew install --cask 'messenger'
 brew install --cask 'molotov'
+brew install --cask 'ngrok'
 brew install --cask 'notion'
 brew install --cask 'notion-calendar'
 brew install --cask 'onyx'

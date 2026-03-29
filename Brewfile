@@ -1,52 +1,55 @@
+tap "anomalyco/tap"
 tap "smudge/smudge"
-# New file format for still image compression
-brew "jpeg-xl"
-# Codec library for encoding and decoding AV1 video streams
-brew "aom"
 # Aquarium animation in ASCII art
 brew "asciiquarium"
-# Bourne-Again SHell, a UNIX command interpreter
-brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Core application library for C
-brew "glib"
 # Console Matrix
 brew "cmatrix"
-# Play, record, convert, and stream select audio and video codecs
-brew "ffmpeg"
+# Securely send things from one computer to another
+brew "croc"
 # Banner-like program prints strings as ASCII art
 brew "figlet"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Interact with Google Gemini AI models from the command-line
+brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
-# Interpreter for PostScript and PDF
-brew "ghostscript"
 # Distributed revision control system
 brew "git"
-# Apache HTTP server
-brew "httpd"
-# ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
-brew "libheif"
+# Open-source GitLab command-line tool
+brew "glab"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
-# Fast, flexible, config-based cli for linting Markdown/CommonMark files
-brew "markdownlint-cli2"
 # Mac App Store command-line interface
 brew "mas"
-# Manage multiple Node.js versions
-brew "nvm"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
+# Fast, disk space efficient package manager
+brew "pnpm"
 # Python version management
 brew "pyenv"
-# Static analysis and lint tool, for (ba)sh scripts
-brew "shellcheck"
-# Autoformat shell script source code
-brew "shfmt"
+# Pyenv plugin to manage virtualenv
+brew "pyenv-virtualenv"
+# Generic syntax highlighter
+brew "pygments"
+# Install various Ruby versions and implementations
+brew "ruby-build"
+# Ruby version manager
+brew "rbenv"
+# Powerful, clean, object-oriented scripting language
+brew "ruby"
+# Extremely fast Python linter, written in Rust
+brew "ruff"
+# Table Maker for Modern C++
+brew "tabulate"
 # Color-based alternative to figlet (uses libcaca)
 brew "toilet"
 # Display directories as trees (with optional color/HTML output)
@@ -57,46 +60,47 @@ brew "wget"
 brew "yarn"
 # UNIX shell (command interpreter)
 brew "zsh"
+# The AI coding agent built for the terminal.
+brew "anomalyco/tap/opencode"
 # A CLI for configuring 'Night Shift' on macOS 🌕🌖🌗🌘🌑
 brew "smudge/smudge/nightlight"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
+# View, create, manipulate, print and manage files in Portable Document Format
+cask "adobe-acrobat-pro"
 # Collection of apps and services for photography, design, video, web, and UX
 cask "adobe-creative-cloud"
-# Batch file renaming utility
-cask "advanced-renamer"
 # Enable Windows-like alt-tab
 cask "alt-tab"
 # Application uninstaller
 cask "appcleaner"
 # Desktop password and login vault
 cask "bitwarden"
-# Remove junk and unused files
-cask "ccleaner"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
 # Terminal-based AI coding assistant
 cask "claude-code"
 # Image, video and clipboard optimiser
 cask "clop"
 # Write, edit, and chat about your code with AI
 cask "cursor"
-# Photography workflow application and raw developer
-cask "darktable"
-# Universal database tool and SQL client
-cask "dbeaver-community"
-# Voice and text chat software
-cask "discord"
+# Drivers for DisplayLink docks, adapters and monitors
+cask "displaylink"
 # Collaborative team software
 cask "figma"
 # Web browser
 cask "firefox"
+# Screen colour temperature controller
+cask "flux-app"
+cask "font-lato"
 # GIT client
 cask "fork"
 # Desktop client for GitHub repositories
 cask "github"
-# Web browser
-cask "google-chrome"
 # Client for the Google Drive storage service
 cask "google-drive"
-# Speech to text application
-cask "handy"
+# AI-powered notepad for meetings
+cask "granola"
 # Utility to hide menu bar items
 cask "hiddenbar"
 # Terminal emulator as alternative to Apple's Terminal app
@@ -105,18 +109,22 @@ cask "iterm2"
 cask "keycastr"
 # Utility that shows the latest app updates
 cask "latest"
-# Native desktop app for Messenger (formerly Facebook Messenger)
-cask "messenger"
-# French TV streaming service
-cask "molotov"
+# Screen and video recording software
+cask "loom"
+# Shows the next meeting in the menu bar
+cask "meetingbar"
+# Menu bar browser
+cask "menubarx"
+# Online collaborative whiteboard platform
+cask "miro"
+# Reverse proxy, secure introspectable tunnels to localhost
+cask "ngrok"
 # App to write, plan, collaborate, and get organised
 cask "notion"
 # Calendar for professionals and teams
 cask "notion-calendar"
-# Verify system files structure, run miscellaneous maintenance and more
-cask "onyx"
-# Client program for the OpenVPN Access Server
-cask "openvpn-connect"
+# Email client integrated with Notion workspace
+cask "notion-mail"
 # Collaboration platform for API development
 cask "postman"
 # Control your tools with a few keystrokes
@@ -139,31 +147,25 @@ cask "sublime-merge"
 cask "sublime-text"
 # Dictation tool including LLM reformatting
 cask "superwhisper"
-# Interior design application
-cask "sweet-home3d"
-# Sync and backup service to Synology NAS drives
-cask "synology-drive"
+# Menu bar manager
+cask "thaw"
 # AI image upscaler
 cask "upscayl"
-# Multimedia player
-cask "vlc"
-# Resources for Wacom tablets
-cask "wacom-tablet"
 # Native desktop client for WhatsApp
 cask "whatsapp"
-# Video communication and virtual meeting platform
-cask "zoom"
-mas "HP", id: 1474276998
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
-mas "MenubarX", id: 1575588022
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word", id: 462054704
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Xcode", id: 497799835
+vscode "anthropic.claude-code"
+vscode "anysphere.cursorpyright"
+vscode "bierner.markdown-mermaid"
 vscode "dbaeumer.vscode-eslint"
 vscode "esbenp.prettier-vscode"
-vscode "ms-vscode.sublime-keybindings"
+vscode "firefox-devtools.vscode-firefox-debug"
+vscode "ms-python.debugpy"
+vscode "ms-python.python"
 vscode "openai.chatgpt"
+vscode "shd101wyy.markdown-preview-enhanced"
+vscode "yzhang.markdown-all-in-one"
