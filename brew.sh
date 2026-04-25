@@ -32,6 +32,7 @@ brew install 'anomalyco/tap/opencode'   # OpenCode AI coding assistant
 brew install 'asciiquarium'             # Aquarium animation in the terminal (fun)
 brew install 'bat'                      # cat with syntax highlighting and Git integration
 brew install 'cmatrix'                  # Matrix-style terminal animation
+brew install 'cmux'                     # Multi-connection proxy
 brew install 'figlet'                   # Generate large ASCII art text banners
 brew install 'gh'                       # GitHub CLI — manage PRs, issues, repos from the terminal
 brew install 'git'                      # Version control (always keep up-to-date)
@@ -40,6 +41,7 @@ brew install 'jq'                       # Parse and transform JSON from the comm
 brew install 'markdownlint-cli2'        # Markdown linter for consistent documentation style
 brew install 'mas'                      # CLI for the Mac App Store (used below)
 brew install 'node'                     # Node.js runtime and npm package manager
+brew install 'ollama'                   # Local AI chatbot server
 brew install 'shellcheck'               # Static analysis / linter for shell scripts
 brew install 'shfmt'                    # Shell script formatter
 brew install 'sl'                       # Steam Locomotive animation
@@ -58,8 +60,9 @@ brew install --cask 'advanced-renamer'
 brew install --cask 'alt-tab'
 brew install --cask 'appcleaner'
 brew install --cask 'bitwarden'
-brew install --cask 'claude-code'
 brew install --cask 'ccleaner'
+brew install --cask 'chatgpt'
+brew install --cask 'claude-code'
 brew install --cask 'clop'
 brew install --cask 'cursor'
 brew install --cask 'darktable'
@@ -67,6 +70,7 @@ brew install --cask 'dbeaver-community'
 brew install --cask 'discord'
 brew install --cask 'figma'
 brew install --cask 'firefox'
+brew install --cask 'flux-app'
 brew install --cask 'fork'
 brew install --cask 'github'
 brew install --cask 'google-chrome'

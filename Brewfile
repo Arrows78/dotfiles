@@ -24,8 +24,12 @@ brew "glab"
 brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Library to render SVG files using Cairo
+brew "librsvg"
 # Mac App Store command-line interface
 brew "mas"
+# Java-based project management
+brew "maven"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
 # Execute binaries from Python packages in isolated environments
@@ -50,6 +54,8 @@ brew "ruby"
 brew "ruff"
 # Table Maker for Modern C++
 brew "tabulate"
+# Terminal multiplexer
+brew "tmux"
 # Color-based alternative to figlet (uses libcaca)
 brew "toilet"
 # Display directories as trees (with optional color/HTML output)
@@ -78,10 +84,14 @@ cask "appcleaner"
 cask "bitwarden"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# Anthropic's official Claude AI desktop app
+cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
 # Image, video and clipboard optimiser
 cask "clop"
+# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
+cask "cmux"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Drivers for DisplayLink docks, adapters and monitors
@@ -93,6 +103,8 @@ cask "firefox"
 # Screen colour temperature controller
 cask "flux-app"
 cask "font-lato"
+cask "font-open-sans"
+cask "font-roboto"
 # GIT client
 cask "fork"
 # Desktop client for GitHub repositories
@@ -101,6 +113,8 @@ cask "github"
 cask "google-drive"
 # AI-powered notepad for meetings
 cask "granola"
+# Speech to text application
+cask "handy"
 # Utility to hide menu bar items
 cask "hiddenbar"
 # Terminal emulator as alternative to Apple's Terminal app
@@ -125,6 +139,8 @@ cask "notion"
 cask "notion-calendar"
 # Email client integrated with Notion workspace
 cask "notion-mail"
+# Replacement for Docker Desktop
+cask "orbstack"
 # Collaboration platform for API development
 cask "postman"
 # Control your tools with a few keystrokes
@@ -147,6 +163,8 @@ cask "sublime-merge"
 cask "sublime-text"
 # Dictation tool including LLM reformatting
 cask "superwhisper"
+# Interior design application
+cask "sweet-home3d"
 # Menu bar manager
 cask "thaw"
 # AI image upscaler
@@ -157,9 +175,9 @@ mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Xcode", id: 497799835
 vscode "anthropic.claude-code"
 vscode "anysphere.cursorpyright"
+vscode "anysphere.remote-ssh"
 vscode "bierner.markdown-mermaid"
 vscode "dbaeumer.vscode-eslint"
 vscode "esbenp.prettier-vscode"

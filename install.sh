@@ -10,8 +10,6 @@
 #   4. Configuring SSH (generates an Ed25519 key pair if none exists)
 #   5. Installing Zsh plugins (zsh-syntax-highlighting, zsh-autosuggestions)
 #   6. Setting up Sublime Text with Package Control and synced config
-#   7. Cursor: copy User + rules; symlink skill dirs under ~/.cursor/skills
-#   8. Claude: copy settings; symlink same skill dirs under ~/.claude/skills
 #
 # Usage:
 #   zsh install.sh
@@ -79,17 +77,9 @@ symlink() {
   fi
 }
 
-# Copy repo file -> dest; skip missing src; drop symlink dest; backup real file then cp
-install_copy_file() {
-  if [[ -f "$1" ]]; then
-    mkdir -p "$(dirname "$2")"
-    [[ -L "$2" ]] && rm "$2"
-    backup "$2"
-    cp -f "$1" "$2" && info "Copied $(highlight "$2")"
-  fi
-}
-
-
+# ==============================
+# ZSH CHECK
+# ==============================
 # Check if we're running under zsh
 if [ -z "$ZSH_VERSION" ]; then
   error "This script must be run with Zsh. Try: $(highlight "zsh $0")"
@@ -171,10 +161,17 @@ mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR" || exit 1
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   info "Installing zsh plugin $(highlight 'zsh-syntax-highlighting')..."
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+fi
+
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-autosuggestions" ]; then
+  info "Installing zsh plugin $(highlight 'zsh-autosuggestions')..."
   git clone https://github.com/zsh-users/zsh-autosuggestions.git
+fi
+
+if [ -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ] && [ -d "$ZSH_PLUGINS_DIR/zsh-autosuggestions" ]; then
   success "Zsh plugins installed successfully"
 else
-  success "Zsh plugins already installed"
+  info "Some Zsh plugins were already installed"
 fi
 
 cd "$CURRENT_DIR" || exit 1
@@ -209,68 +206,6 @@ done
 
 success "Sublime Text configuration complete"
 
-# ==============================
-# CURSOR
-# ==============================
-# Editor settings:  ~/Library/Application Support/Cursor/User/  (settings.json, keybindings.json)  - copy
-# Rules:            ~/.cursor/rules/  - copy (Cursor does not follow rule symlinks)
-# Skills:           ~/.cursor/skills/<name>  - symlink to repo skill dir
-CURSOR_USER_PATH="$HOME_DIR/Library/Application Support/Cursor/User"
-CURSOR_PATH="$HOME_DIR/.cursor"
-CURSOR_RULES_PATH="$CURSOR_PATH/rules"
-CURSOR_SKILLS_PATH="$CURSOR_PATH/skills"
-
-CURSOR_DOTFILES_PATH="$CURRENT_DIR/apps/cursor"
-CURSOR_DOTFILES_RULES_PATH="$CURRENT_DIR/apps/cursor/rules"
-CURSOR_DOTFILES_SKILLS_PATH="$CURRENT_DIR/apps/cursor/skills"
-
-mkdir -p "$CURSOR_USER_PATH" "$CURSOR_RULES_PATH" "$CURSOR_SKILLS_PATH"
-
-for file in "$CURSOR_DOTFILES_PATH/settings.json" "$CURSOR_DOTFILES_PATH/keybindings.json"; do
-  filename=$(basename "$file")
-  install_copy_file "$file" "$CURSOR_USER_PATH/$filename"
-done
-
-for rule in "$CURSOR_DOTFILES_RULES_PATH"/*; do
-    rulename=$(basename "$rule")
-    install_copy_file "$rule" "$CURSOR_RULES_PATH/$rulename"
-done
-
-for skill in "$CURSOR_DOTFILES_SKILLS_PATH"/*; do
-    skillname=$(basename "$skill")
-    backup "$CURSOR_SKILLS_PATH/$skillname"
-    symlink "$skill" "$CURSOR_SKILLS_PATH/$skillname"
-done
-
-success "Cursor configuration complete"
-
-# ==============================
-# CLAUDE CODE
-# ==============================
-# Config:  ~/.claude/  (settings.json from apps/claude)  — copy
-# Skills:  ~/.claude/skills/<name>  — symlink, same dirs as apps/cursor/skills
-CLAUDE_PATH="$HOME_DIR/.claude"
-CLAUDE_SKILLS_PATH="$CLAUDE_PATH/skills"
-
-CLAUDE_DOTFILES_PATH="$CURRENT_DIR/apps/claude"
-CLAUDE_DOTFILES_SKILLS_PATH="$CURRENT_DIR/apps/cursor/skills"
-
-mkdir -p "$CLAUDE_PATH" "$CLAUDE_SKILLS_PATH"
-
-for file in settings.json; do
-  if [ ! -e "$CLAUDE_PATH/$file" ]; then
-    backup "$CLAUDE_PATH/$file"
-    symlink "$file" "$CLAUDE_PATH/$file"
-  fi
-done
-
-for skill in "$CLAUDE_DOTFILES_SKILLS_PATH"/*(N/); do
-  skillname=$(basename "$skill")
-  backup "$CLAUDE_SKILLS_PATH/$skillname"
-  symlink "$skill" "$CLAUDE_SKILLS_PATH/$skillname"
-done
-
-success "Claude Code configuration complete"
 
 success "Installation completed successfully! All Done! 🎉"
 
